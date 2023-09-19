@@ -45,16 +45,28 @@ https://developers.arcgis.com/documentation/mapping-apis-and-services/get-starte
         esriConfig.apiKey =
           "AAPK73ca3bae20d44b76af57a8ceb88dee62XZaPGrQrt6vkGfWxQAh3ZtxZGWzft7ZQAIoQ4sprORGuYlYqtjGrZI7lOFr1hMB1";
 
-        const map = new Map({
-          basemap: "arcgis-topographic", // Basemap layer service
+        const webmap = new WebMap({
+          portalItem: {
+            id: "41281c51f9de45edaf1c8ed44bb10e30",
+          },
         });
 
         const view = new MapView({
-          map: map,
-          center: [-118.805, 34.027], // Longitude, latitude
-          zoom: 13, // Zoom level
-          container: "viewDiv", // Div element
+          map: webmap,
+          container: "viewDiv",
         });
+
+        const scalebar = new ScaleBar({
+          view: view,
+        });
+
+        view.ui.add(scalebar, "bottom-left");
+
+        const legend = new Legend({
+          view: view,
+        });
+
+        view.ui.add(legend, "top-right");
       });
     </script>
   </head>
